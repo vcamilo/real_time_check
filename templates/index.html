@@ -1,0 +1,28 @@
+<h1>Funciona!</h1>
+
+<script>
+    function carregaDados(dado){
+        document.querySelector('#return').innerHTML = dado;
+    }
+    data = 'string de teste'
+    var request = new XMLHttpRequest();
+    function teste(){
+        data = document.querySelector('#input').value;
+        request.open('POST', '/request', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(data);
+        request.onreadystatechange = function() {
+            if(request.status == 200 && request.readyState == 4){
+                var json_data = request.responseText;
+                carregaDados(json_data);
+            }
+        }
+    }
+</script>
+<p id='return'></p>
+<ul>
+    <li></li>
+</ul>
+<form>
+    <input type="text" name="data" id="input" onkeyup="teste()">
+</form>
