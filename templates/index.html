@@ -13,8 +13,9 @@
         request.send(data);
         request.onreadystatechange = function() {
             if(request.status == 200 && request.readyState == 4){
-                var json_data = request.responseText;
-                carregaDados(json_data);
+                var string_data = request.responseText;
+                var json_data = JSON.parse(string_data);
+                console.log(json_data[0][0])
             }
         }
     }
